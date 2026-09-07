@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/*
+  ReadPace brand tokens — mirrored from the app's ColorSchemes
+  (readpace_v2/lib/theme/app_colors.dart). Warm-orange accent on warm
+  off-white (light), deep blue-charcoal (dark). Flat surfaces, hairline
+  borders, pill buttons, large radii.
+*/
+@theme {
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  /* Brand orange */
+  --color-brand: #e8730f;
+  --color-brand-bright: #ff8a3d;
+  --color-brand-deep: #c2530a;
+  --color-brand-container: #fde3cb;
+  --color-on-brand-container: #5a2c00;
+
+  /* Warm light surfaces */
+  --color-paper: #f5f2ed;
+  --color-paper-dim: #ece6dd;
+  --color-card: #ffffff;
+  --color-ink: #1a1410;
+  --color-ink-soft: #6b5f52;
+  --color-taupe: #8a7d6e;
+  --color-hairline: #ece6dd;
+  --color-hairline-strong: #e0d8cc;
+
+  /* Dark surfaces */
+  --color-night: #0d1622;
+  --color-night-card: #13202e;
+  --color-night-hi: #182838;
+  --color-night-ink: #f2f6fa;
+  --color-night-taupe: #8b97a6;
+  --color-night-hairline: #1c2c3c;
+
+  /* Semantic accents used in charts / badges */
+  --color-mint: #2f9e6f;
+  --color-rose: #d4736f;
+  --color-sky: #4f8cc9;
+
+  --radius-card: 1.25rem;
+  --radius-xl: 1.75rem;
+}
+
+* {
+  border-color: var(--color-hairline);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+::selection {
+  background-color: var(--color-brand);
+  color: #fff;
+}
+
+/* ---------------------------------------------------------- backgrounds */
+
+.bg-warm-wash {
+  background:
+    radial-gradient(60rem 40rem at 78% -12%, rgba(232, 115, 15, 0.13), transparent 60%),
+    radial-gradient(50rem 40rem at -5% 8%, rgba(232, 115, 15, 0.07), transparent 55%),
+    var(--color-paper);
+}
+
+.bg-night-wash {
+  background:
+    radial-gradient(45rem 35rem at 85% 0%, rgba(255, 138, 61, 0.16), transparent 60%),
+    radial-gradient(40rem 30rem at 0% 100%, rgba(79, 140, 201, 0.1), transparent 55%),
+    var(--color-night);
+}
+
+.text-gradient-brand {
+  background: linear-gradient(100deg, var(--color-brand) 10%, var(--color-brand-bright) 90%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Faint ruled-paper texture, used behind the quote block. */
+.bg-ruled {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 1.65rem,
+    rgba(138, 125, 110, 0.16) 1.65rem 1.7rem
+  );
+}
+
+/* ------------------------------------------------------------ animation */
+
+@keyframes rp-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: rp-float 7s ease-in-out infinite;
+}
+
+@keyframes rp-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise {
+  animation: rp-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+
+/*
+  Scroll-linked reveal as pure progressive enhancement: content is fully
+  visible by default, and only browsers that support scroll-driven
+  animations opt into the fade-up. No JavaScript, no risk of hidden
+  content if the feature is missing or scripting is disabled.
+*/
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: rp-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 22%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-rise {
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* -------------------------------------------------------------- gallery */
+
+.gallery-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-hairline-strong) transparent;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.gallery-scroll > * {
+  scroll-snap-align: center;
+}
+.gallery-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-hairline-strong);
+  border-radius: 999px;
+}
+
+/* FAQ disclosure marker is drawn by our own element. */
+details > summary::-webkit-details-marker {
+  display: none;
+}
+details > summary {
+  list-style: none;
+}
