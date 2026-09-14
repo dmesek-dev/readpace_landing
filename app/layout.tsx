@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 
-import { StructuredData } from "@/components/StructuredData";
-import { facts, site } from "@/content/site";
+import { site } from "@/content/site";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -28,20 +27,6 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   category: "education",
-  keywords: [
-    "reading speed app",
-    "words per minute tracker",
-    "WPM tracker",
-    "reading comprehension test app",
-    "reading tracker for physical books",
-    "speed reading app",
-    "reading speed test",
-    "how fast do I read",
-    "reading habit tracker",
-    "book reading log",
-    "reading sweet spot",
-    "on-device OCR word count",
-  ],
   authors: [{ name: site.name, url: site.url }],
   creator: site.name,
   publisher: site.name,
@@ -80,18 +65,10 @@ export const metadata: Metadata = {
     title: site.name,
     capable: false,
   },
-  other: {
-    // Read by some answer engines / crawlers looking for a machine summary.
-    "ai-content-declaration": "human-authored marketing page",
-    "app-platforms": facts.platforms.join(", "),
-  },
 };
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f5f2ed" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d1622" },
-  ],
+  themeColor: "#faf9f5",
   width: "device-width",
   initialScale: 1,
 };
@@ -109,7 +86,6 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
-        <StructuredData />
       </body>
     </html>
   );

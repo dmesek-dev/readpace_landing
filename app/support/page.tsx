@@ -1,18 +1,17 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
 import { A, Doc, H, List, P } from "@/components/Doc";
 import { facts, site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Support",
-  description:
-    "Help with ReadPace: why a scan found no words, why statistics are still locked, how the reading sweet spot unlocks, subscription questions and how to reach a human.",
-  alternates: { canonical: "/support" },
-};
+export const metadata = pageMetadata(
+  "Support",
+  "Get help with ReadPace page scans, reading statistics, comprehension quizzes, subscriptions and your account.",
+  "/support",
+);
 
 export default function SupportPage() {
   return (
-    <Doc title="Support" updated={site.lastUpdated}>
+    <Doc title="Support" updated="2026-09-07">
       <P>
         Something not behaving? Most questions have a short answer below. If
         yours isn&rsquo;t here, email{" "}
@@ -21,11 +20,11 @@ export default function SupportPage() {
 
       <H>The scan found no words</H>
       <P>
-        The recognizer needs a readable page: even light, the whole text block in
-        frame, and the phone held roughly parallel to the paper. Very stylised
-        type, heavy shadows and non-Latin scripts are the usual culprits. Rescan
-        rather than accept a bad count — a wrong word count quietly poisons your
-        WPM.
+        The recognizer needs a readable page: even light, the whole text block
+        in frame, and the phone held roughly parallel to the paper. Very
+        stylised type, heavy shadows and non-Latin scripts are the usual
+        culprits. Rescan rather than accept a bad count — a wrong word count
+        quietly poisons your WPM.
       </P>
 
       <H>My statistics are still locked</H>
@@ -56,12 +55,12 @@ export default function SupportPage() {
             you scanned, so an offline session saves without a score.
           </>,
           <>
-            A very thin scan can&rsquo;t support questions. Scan more of what you
-            read and the quiz will have material to work from.
+            A very thin scan can&rsquo;t support questions. Scan more of what
+            you read and the quiz will have material to work from.
           </>,
           <>
-            On the free plan you have {facts.freeTests} tests in total — enough to
-            unlock your sweet spot once.
+            On the free plan you have {facts.freeTests} tests in total — enough
+            to unlock your sweet spot once.
           </>,
         ]}
       />

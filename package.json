@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tools/reading.test.mjs",
+    "check:seo": "node tools/check-seo.mjs"
   },
   "dependencies": {
     "next": "15.5.22",

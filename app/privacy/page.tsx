@@ -1,14 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
 import { A, Doc, H, List, P } from "@/components/Doc";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
-  title: "Privacy",
-  description:
-    "How ReadPace handles your data: page photos are processed on-device and never uploaded, reading history is stored against your account, and the optional comprehension quiz sends only the recognised page text to an AI service.",
-  alternates: { canonical: "/privacy" },
-};
+export const metadata = pageMetadata(
+  "Privacy",
+  "How ReadPace handles page photos, reading history and optional AI comprehension quizzes.",
+  "/privacy",
+);
 
 /**
  * Plain-language privacy page.
@@ -21,7 +20,7 @@ export const metadata: Metadata = {
  */
 export default function PrivacyPage() {
   return (
-    <Doc title="Privacy" updated={site.lastUpdated}>
+    <Doc title="Privacy" updated="2026-09-07">
       <P>
         ReadPace is a reading tracker. It needs your camera to count words and
         an account to keep your history — nothing else. This page describes
@@ -55,20 +54,21 @@ export default function PrivacyPage() {
       <H>The optional comprehension test</H>
       <P>
         Comprehension tests are off unless you turn them on, and can be turned
-        off again at any time in the <em>You</em> tab. When a test runs, the text
-        recognised from the pages you just scanned is sent to an AI service so it
-        can write multiple-choice questions about those pages. The questions and
-        your score come back and are saved with the session; the page images are
-        never part of that request. Everything else — timing, word counting, WPM
-        and every statistic except recall — works with the feature switched off.
+        off again at any time in the <em>You</em> tab. When a test runs, the
+        text recognised from the pages you just scanned is sent to an AI service
+        so it can write multiple-choice questions about those pages. The
+        questions and your score come back and are saved with the session; the
+        page images are never part of that request. Everything else — timing,
+        word counting, WPM and every statistic except recall — works with the
+        feature switched off.
       </P>
 
       <H>Usage measurement</H>
       <P>
-        The app records which screens are opened and anonymous reading stats such
-        as session length and pace, so we can see which parts of ReadPace get
-        used. It never records your book titles, your scanned pages or your quiz
-        answers. You can switch this off with the <em>Share usage data</em>{" "}
+        The app records which screens are opened and anonymous reading stats
+        such as session length and pace, so we can see which parts of ReadPace
+        get used. It never records your book titles, your scanned pages or your
+        quiz answers. You can switch this off with the <em>Share usage data</em>{" "}
         toggle in the <em>You</em> tab&rsquo;s Privacy section.
       </P>
 

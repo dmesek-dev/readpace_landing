@@ -22,13 +22,13 @@ export const site = {
   url: "https://readpace.org",
   tagline: "Find the reading speed where you actually remember",
   /** Used for <title>, OG title and the H1's plain-text equivalent. */
-  title: "ReadPace — Find the reading speed where you actually remember",
+  title: "ReadPace — Reading Speed & Comprehension App",
   description:
-    "ReadPace is a reading tracker for physical books. Time a session, scan the pages with your camera to count the words on-device, and get your words-per-minute plus a comprehension score — then see the pace band where your recall peaks.",
+    "Track your reading speed in WPM and see what you remember. ReadPace helps you find your pace with physical books. Try the free online reading speed test.",
   shortDescription:
     "Time your reading, scan the page to count words on-device, and find the pace where your recall peaks.",
   locale: "en_US",
-  lastUpdated: "2026-09-07",
+  lastUpdated: "2026-09-14",
   email: "hello@readpace.org",
   bundleId: "com.readpace",
 } as const;
@@ -70,18 +70,40 @@ export const facts = {
 
 /** Short, extractable claims. Rendered as a table and mirrored in llms.txt. */
 export const quickFacts: { label: string; value: string }[] = [
-  { label: "What it is", value: "A reading-speed and comprehension tracker for physical books" },
+  {
+    label: "What it is",
+    value: "A reading-speed and comprehension tracker for physical books",
+  },
   { label: "Platforms", value: "iOS and Android" },
-  { label: "Core loop", value: "Time a session → scan the pages you read → get WPM + recall" },
-  { label: "Word counting", value: "On-device OCR (Latin script) — page photos never leave the phone" },
-  { label: "Signature feature", value: "Reading sweet spot: the WPM band where your recall peaks" },
+  {
+    label: "Core loop",
+    value: "Time a session → scan the pages you read → get WPM + recall",
+  },
+  {
+    label: "Word counting",
+    value: "On-device OCR (Latin script) — page photos never leave the phone",
+  },
+  {
+    label: "Signature feature",
+    value: "Reading sweet spot: the WPM band where your recall peaks",
+  },
   {
     label: "Free plan",
     value: `${facts.freeBooks} book and ${facts.freeTests} comprehension tests — enough to unlock your sweet spot once`,
   },
-  { label: "Premium", value: "Unlimited books and comprehension tests (monthly or yearly)" },
-  { label: "Account", value: "Email, Apple or Google — required to save and sync sessions" },
-  { label: "Offline", value: "Timing and word counting work offline; quizzes and sync need a connection" },
+  {
+    label: "Premium",
+    value: "Unlimited books and comprehension tests (monthly or yearly)",
+  },
+  {
+    label: "Account",
+    value: "Email, Apple or Google — required to save and sync sessions",
+  },
+  {
+    label: "Offline",
+    value:
+      "Timing and word counting work offline; quizzes and sync need a connection",
+  },
   { label: "Category", value: "Education / Productivity" },
 ];
 
@@ -195,21 +217,22 @@ export const steps = [
   {
     n: "01",
     title: "Time the session",
-    body: "Pick the book you're holding and hit start. A calm timer runs while you read — pause it whenever life interrupts. Nothing counts until you scan, so there's no pressure to perform.",
+    body: "Pick up your book and start the timer. Read at your own pace, and pause whenever life interrupts.",
     screen: screens.timer,
     detail: `Sessions shorter than ${facts.minReliableSeconds} seconds are ignored as unreliable.`,
   },
   {
     n: "02",
     title: "Scan what you read",
-    body: "Point the camera at the pages you just finished. ReadPace recognises the text and counts the words right on your phone, then divides by your timer minutes for an honest words-per-minute.",
+    body: "Point your camera at the pages you finished. ReadPace counts the words on your phone and calculates your WPM.",
     screen: screens.scan,
-    detail: "On-device OCR. The photo is used to count words and never leaves your phone.",
+    detail:
+      "On-device OCR. The photo is used to count words and never leaves your phone.",
   },
   {
     n: "03",
-    title: "Prove you remember it",
-    body: "An optional quiz asks about the pages you actually scanned, then puts recall next to speed. Speed alone is a vanity metric — this is the number that tells you whether you were reading or just turning pages.",
+    title: "See what stayed with you",
+    body: "Take an optional quiz about those pages. See your recall alongside your speed, and get to know your reading rhythm.",
     screen: screens.book,
     detail: `${facts.quizMin}–${facts.quizMax} questions, scaled to how much you scanned.`,
   },
@@ -260,20 +283,6 @@ export const features = [
   },
 ] as const;
 
-/* ------------------------------------------------------------ comparison */
-
-export const comparison = {
-  columns: ["Speed-reading apps", "Reading logs", "ReadPace"],
-  rows: [
-    { label: "Times your reading", values: [true, "some", true] },
-    { label: "Counts the words on a physical page", values: [false, false, true] },
-    { label: "Tests what you remembered", values: [false, false, true] },
-    { label: "Relates your speed to your recall", values: [false, false, true] },
-    { label: "Runs the counting on-device", values: [false, "some", true] },
-    { label: "Works with print, not just ebooks", values: ["some", true, true] },
-  ] as { label: string; values: (boolean | "some")[] }[],
-};
-
 /* --------------------------------------------------------------- pricing */
 
 export const pricing = {
@@ -286,7 +295,7 @@ export const pricing = {
       "On-device word counting and WPM",
       `Full stats after ${facts.statsUnlockSessions} qualifying sessions`,
       `${facts.freeBooks} book in your library`,
-      `${facts.freeTests} comprehension tests — exactly enough to unlock your sweet spot once`,
+      `${facts.freeTests} comprehension tests — enough to unlock your first sweet spot`,
     ],
   },
   premium: {
@@ -316,7 +325,7 @@ export const faqs: { q: string; a: string }[] = [
   },
   {
     q: "What is the reading sweet spot?",
-    a: `Your sweet spot is the reading-speed band where your comprehension peaks. ReadPace groups your tested sessions into ${facts.sweetSpotBinWidth}-WPM bands, averages the recall in each, and highlights the band where you remembered the most — plus the drop-off point past which recall clearly falls. It needs ${facts.sweetSpotMinTestedSessions} tested sessions before it shows a band, so the number is always your own data and never an estimate.`,
+    a: `Your sweet spot is the reading-speed band where your comprehension peaks. ReadPace groups your tested sessions into ${facts.sweetSpotBinWidth}-WPM bands, averages the recall in each, and highlights the band where you remembered the most — plus the drop-off point past which recall clearly falls. It needs ${facts.sweetSpotMinTestedSessions} tested sessions before it shows a band, so the insight reflects your recorded sessions. It is not a validated assessment of reading ability.`,
   },
   {
     q: "Do photos of my book pages leave my phone?",

@@ -1,127 +1,52 @@
-# ReadPace — Landing Page
+# ReadPace website
 
-Marketing site for **ReadPace**, the reading tracker for physical books that
-finds the pace where your recall peaks. Built with **Next.js (App Router)** +
-**Tailwind CSS v4**, styled from the app's own design tokens (warm-orange
-accent, warm off-white surfaces, Space Grotesk + Plus Jakarta Sans).
+A Next.js 15 / React 19 marketing site for the ReadPace physical-book reading tracker. The homepage introduces the app through real screenshots, a reading-speed/recall example, pricing and FAQs. Three linked resources give visitors useful entry points from search:
 
-The page ships **zero client-side JavaScript of its own** — the nav menu and the
-FAQ are `<details>` elements, and the scroll reveals are CSS scroll-driven
-animations behind an `@supports` guard.
+- `/reading-speed-test` — original 338-word fiction passage, accurate elapsed-time measurement, pause/resume, three recall questions and an app CTA. State stays in browser memory; no result collection or account required.
+- `/wpm-calculator` — live words-per-minute calculation with validated word/time inputs and worked examples.
+- `/average-reading-speed` — guide with primary research citations, group-average context and the limits of WPM.
 
-## Develop
+The homepage and editorial content are server-rendered and statically generated. Only the timer/quiz, calculator and small mobile-menu interaction add application client JavaScript. Mobile navigation and FAQs use native disclosure elements; the menu also dismisses on navigation, Escape and outside taps.
 
-```bash
+## Development and validation
+
+```sh
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # production build (all routes prerender statically)
+npm run dev
+npm run typecheck
+npm test
+npm run build
+npm run check:seo
 npm start
 ```
 
-## Before launch — the four things to fill in
+`npm test` checks reading arithmetic, input edge cases, word counting and duration formatting. `check:seo` runs against the production build and verifies unique titles/descriptions, canonical URLs, one H1 per page, parseable page-specific JSON-LD, internal links/anchors, sitemap coverage and crawler access.
 
-1. **Store URLs** — `content/site.ts` → `stores`. Both are `null`, which renders
-   the badges as non-clickable "Soon" chips. Paste the real URLs and every CTA,
-   plus the JSON-LD `installUrl`, updates at once.
-2. **Domain** — `content/site.ts` → `site.url` (currently `https://readpace.org`).
-   Canonical URLs, `sitemap.xml`, `robots.txt`, OG tags and structured data all
-   derive from it.
-3. **Contact address** — `site.email` (`hello@readpace.org`) is used on the
-   footer, support page and privacy page. Make sure it exists.
-4. **Legal review** — `/privacy` is an accurate, plain-language description of
-   what the app actually does, not a lawyer-drafted policy. Have it checked
-   before the store listings go live; the App Store and Play Store both link to
-   it.
+## Product facts and launch configuration
 
-Also worth knowing: the hero screenshot shows the founder's own display name and
-library. To swap in a demo account, re-shoot the app and re-run the screenshot
-script below — the file names stay the same.
+`content/site.ts` contains the app facts, screenshots, pricing, FAQs and store URLs. Product limits originated in the `readpace_v2` app source; verify this file when the app changes. Do not add invented ratings, download counts, efficacy claims or unsupported competitor comparisons.
 
-## Content lives in one file
+Both store URLs are currently `null`. The website labels those platforms as coming soon and offers the working online reading test. Add verified App Store and Google Play URLs in `stores` when live. The app CTA copy and install structured data then update automatically. No waitlist or email collection backend is configured.
 
-`content/site.ts` is the single source of truth: copy, features, FAQ, pricing,
-comparison table, quick facts and screenshot metadata. The page, the JSON-LD and
-`/llms.txt` all read from it, so a fact cannot drift between what a human sees
-and what a crawler is told.
+The canonical production origin is `https://readpace.org`. Confirm it before launch. The existing contact address is `hello@readpace.org`. Privacy/support copy is retained from the original site, with its original September 7, 2026 content date.
 
-Every product claim in there is traceable to the app source in `readpace_v2`
-(free-tier limits, stats thresholds, quiz length, WPM bounds, on-device OCR).
-Comments in the file name the specific Dart files. **Don't add numbers that
-aren't in the app** — no download counts, no ratings, no invented testimonials.
+## Search and AI discovery
 
-## Screenshots
+- Search-focused resource titles, descriptions, self-canonicals and social metadata.
+- Statically rendered explanations, accessible headings, visible citations and crawlable internal links.
+- Homepage Organization, WebSite, MobileApplication and matching FAQ entities. Resource-specific WebPage/BreadcrumbList entities, with Article markup on the research guide.
+- No fabricated ratings, software versions, install URLs or stock availability. FAQ markup does not promise a Google rich result.
+- `robots.txt` allows public crawling; `sitemap.xml` lists all six content pages with actual content dates.
+- `/llms.txt` is a supplemental reference, generated from shared product facts. Google does not use it for ranking; it is not an AI search shortcut.
 
-Real captures from the app, downsized to 760px-wide WebP in `public/screens/`.
-To regenerate after re-shooting:
+See [SEO launch notes](docs/seo-launch.md) for the remaining production steps and measurement plan. Technical eligibility does not guarantee indexing, rankings or AI citations.
 
-```bash
-pip install Pillow
-python3 tools/build-screens.py [path/to/readpace_v2/screenshots]
-```
+## Images and design
 
-The script prints the output dimensions; if an aspect ratio changes, update the
-matching `h` in `content/site.ts` so the images keep reserving the right space
-(no layout shift).
+Existing real screenshots are in `public/screens/` as WebP with intrinsic dimensions. Only two phone screenshots load on the homepage; the hero gets high fetch priority. All other illustrations and the example chart use HTML/CSS. The design uses warm paper surfaces, terracotta accents, olive panels and serif emphasis, with reduced-motion and keyboard-focus support.
 
-## SEO and AI SEO
+Regenerate screenshots with `python3 tools/build-screens.py [path/to/readpace_v2/screenshots]` and update the dimensions/alt text in `content/site.ts` if needed. The current images show the founder's actual account and reading data.
 
-| Surface | Where |
-|---|---|
-| Title, description, canonical, OG, Twitter, robots directives | `app/layout.tsx` |
-| JSON-LD `@graph` — Organization, WebSite, SoftwareApplication + offers, WebPage, BreadcrumbList, HowTo, DefinedTermSet, FAQPage | `components/StructuredData.tsx` |
-| `robots.txt` — open to search *and* AI crawlers (GPTBot, ClaudeBot, PerplexityBot, …) | `app/robots.ts` |
-| `sitemap.xml` | `app/sitemap.ts` |
-| `/llms.txt` — plain-text brief for language models, generated from `content/site.ts` | `app/llms.txt/route.ts` |
-| OG share image (1200×630, generated at build time) | `app/opengraph-image.tsx` |
-| Web app manifest | `app/manifest.ts` |
+## Deployment
 
-Structured-data notes:
-
-- There is **no `aggregateRating`** on the app entity. Ratings would earn stars
-  in search results, but there are no real reviews yet and inventing them
-  violates Google's guidelines. Add it when the store listings have genuine
-  ratings.
-- The `FAQPage` markup mirrors the on-page FAQ exactly, which is what Google
-  requires — both read from the same array.
-- `DefinedTermSet` spells out "reading sweet spot", "WPM" and "recall score" so
-  an answer engine quoting the page has an unambiguous definition to work from.
-- `/llms.txt` ends with explicit citation guidance, including a request not to
-  attribute download counts or ratings to the app.
-
-After deploying, validate with
-[Rich Results Test](https://search.google.com/test/rich-results) and
-[Schema Markup Validator](https://validator.schema.org/), then submit the
-sitemap in Google Search Console and Bing Webmaster Tools.
-
-## Deploy
-
-Standard Next.js app — zero config on Vercel.
-
-```bash
-npx vercel        # preview
-npx vercel --prod # production
-```
-
-## Structure
-
-```
-app/
-  layout.tsx           # fonts, metadata, JSON-LD mount, skip link
-  page.tsx             # every landing section
-  globals.css          # brand tokens + animations
-  privacy/page.tsx     # plain-language privacy description
-  support/page.tsx     # troubleshooting / help
-  llms.txt/route.ts    # machine-readable brief
-  opengraph-image.tsx  # generated share card
-  robots.ts, sitemap.ts, manifest.ts
-components/
-  PhoneFrame.tsx       # device frame around a real screenshot
-  StoreBadges.tsx      # store CTAs, driven by content/site.ts
-  StructuredData.tsx   # JSON-LD @graph
-  Doc.tsx              # prose primitives for privacy/support
-  Icons.tsx            # inline SVG icon set
-content/
-  site.ts              # ALL copy and product facts
-public/screens/        # optimized app screenshots
-tools/build-screens.py # capture → WebP pipeline
-```
+Use the existing Next.js hosting workflow (for example Vercel). This repository has not been deployed by the redesign work. Run the production checks above before deployment, then verify the production HTTP responses and search properties.
