@@ -22,30 +22,30 @@ import sys
 
 from PIL import Image
 
-DEFAULT_SRC = os.path.expanduser(
-    "~/Workspace/private/readpace_v2/screenshots"
+DEFAULT_SRC = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "screenshots"
 )
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public/screens")
 WIDTH = 760
 
 # (source file, output name, pixels to crop off the bottom of the original)
 #
-# `12-stats.png` is cropped because the capture caught a mid-scroll frame with
-# content bleeding under the tab bar.
+# `scan.webp` has no counterpart in the current capture set — the camera
+# permission screen is a static prompt with no data on it, so the older export
+# is kept as-is. Everything else comes from `screenshots/`.
 JOBS = [
-    ("01-home-7days.png", "home", 0),
-    ("04-sweet-spot-detail.png", "sweet-spot", 0),
-    ("24-session-start.png", "scan", 0),
-    ("26-session-timer.png", "timer", 0),
+    ("03-home-all-time.png", "home", 0),
+    ("04-reading-sweet-spot.png", "sweet-spot", 0),
+    ("08-reading-session-timer.png", "timer", 0),
     ("06-book-detail.png", "book", 0),
-    ("12-stats.png", "stats", 150),
-    ("20-stat-wpm-trend.png", "trend", 0),
-    ("14-stat-category-detail.png", "category", 0),
+    ("13-stats-overview.png", "stats", 0),
+    ("14-stats-by-category.png", "category", 0),
     ("05-library.png", "library", 0),
-    ("15-stat-productive-time.png", "productive", 0),
-    ("23-wpm-goal-editor.png", "goal", 0),
-    ("18-stat-sessions.png", "sessions", 0),
-    ("21-you-settings.png", "you", 0),
+    ("07-book-session-history.png", "sessions", 0),
+    ("10-comprehension-question.png", "quiz", 0),
+    ("11-comprehension-score.png", "score", 0),
+    ("12-comprehension-review.png", "review", 0),
+    ("15-profile-you.png", "you", 0),
 ]
 
 

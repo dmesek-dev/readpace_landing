@@ -118,7 +118,7 @@ export type Screen = {
   h: number;
 };
 
-const S = (src: string, caption: string, alt: string, h = 1648): Screen => ({
+const S = (src: string, caption: string, alt: string, h = 1651): Screen => ({
   src: `/screens/${src}.webp`,
   caption,
   alt,
@@ -130,68 +130,68 @@ export const screens = {
   home: S(
     "home",
     "Home",
-    "ReadPace home screen showing a 334 WPM 7-day average, a rising WPM trend chart against a 500 WPM goal, weekly goal progress, the active book and a sweet-spot insight card reading “You remember most at 300–325 WPM (100% recall)”.",
+    "ReadPace home screen showing a 246 WPM all-time average against a 285 WPM goal, a rising reading-speed chart, weekly goal progress at 2 of 5, the active book “Atomic Habits” at 247 WPM average over 21 sessions and a sweet-spot insight card reading “You remember most at 250–275 WPM (93% recall)”.",
   ),
   sweetSpot: S(
     "sweet-spot",
     "Reading sweet spot",
-    "ReadPace reading sweet spot screen: recall grouped into 25-WPM bands, with the 300–325 WPM band highlighted at 100% recall and a note that recall drops to 50% above 325 WPM.",
+    "ReadPace reading sweet spot screen: recall grouped into 25-WPM bands, with the 250–275 WPM band highlighted at 93% recall and a note that recall drops to 78% above 275 WPM.",
   ),
   timer: S(
     "timer",
     "Session timer",
-    "ReadPace reading session timer running at 0:08 with the active book “Mracna Suma” and Pause and “Finish & scan” buttons.",
+    "ReadPace reading session timer running at 34:00 with the active book “Atomic Habits” and Pause and “Finish & scan” buttons.",
   ),
   scan: S(
     "scan",
     "Page scan",
     "ReadPace camera prompt: “Scan the page to count the words”, noting the camera is used only to count words and that photos are processed on the device and never leave the phone.",
+    1648,
+  ),
+  quiz: S(
+    "quiz",
+    "Comprehension quiz",
+    "ReadPace comprehension quiz, question 1 of 6, asking what the author says is the real difference between goals and systems, with three answer options and a “No idea” escape.",
+  ),
+  score: S(
+    "score",
+    "Recall score",
+    "ReadPace comprehension result: 83% recall marked “strong recall”, alongside 271 WPM and 5 of 6 correct, with a note that this session landed right in the reader's sweet spot.",
+  ),
+  review: S(
+    "review",
+    "Answer review",
+    "ReadPace quiz review listing all six questions with the correct answers marked in green and the one missed answer struck through in red beside the correct one.",
   ),
   book: S(
     "book",
     "Book detail",
-    "ReadPace book detail for “Mracna Suma” showing 295 low, 334 average and 383 high WPM, 73% average recall across 4 tested sessions, a speed-across-sessions chart and recent sessions with WPM and recall rings.",
+    "ReadPace book detail for “Atomic Habits” showing 228 low, 247 average and 271 high WPM, 89% average recall across 16 tested sessions, a speed-across-sessions chart and recent sessions with WPM and recall rings.",
   ),
   stats: S(
     "stats",
     "Stats",
-    "ReadPace stats screen with a 30-day WPM chart, 383 personal best, 9 sessions, 302 average WPM, a most-productive-time chart favouring the afternoon and the reading sweet-spot card.",
-    1551,
-  ),
-  trend: S(
-    "trend",
-    "WPM over time",
-    "ReadPace “WPM over time” detail screen showing 383 WPM latest over the last 30 days and the explanation that WPM equals words read divided by minutes read.",
+    "ReadPace stats screen with a 30-day WPM chart against a 285 goal, 296 personal best, 67 sessions, 237 average WPM, a most-productive-time chart favouring the evening and the reading sweet-spot card.",
   ),
   category: S(
     "category",
     "By category",
-    "ReadPace “Reading by category” screen: Science Fiction read fastest at 334 WPM average with 73% recall, compared against History at 284 WPM.",
-  ),
-  productive: S(
-    "productive",
-    "Best time of day",
-    "ReadPace most-productive-time detail screen comparing average reading speed across morning, afternoon and evening sessions.",
+    "ReadPace “Reading by category” screen: Self-Help read fastest at 247 WPM average with 89% recall, compared down the list to History at 194 WPM.",
   ),
   library: S(
     "library",
     "Library",
-    "ReadPace library screen listing the active book “Mracna Suma” at 334 WPM average over 4 sessions and “Sapiens” at 931 WPM average over 7 sessions.",
+    "ReadPace library screen with “Atomic Habits” as the active book at 247 WPM average over 21 sessions, above Deep Work, Educated, Project Hail Mary and Sapiens with their own averages and sparklines.",
   ),
   sessions: S(
     "sessions",
     "Session history",
-    "ReadPace recent sessions list showing each session's date, word count, duration, WPM and recall percentage.",
-  ),
-  goal: S(
-    "goal",
-    "WPM goal",
-    "ReadPace WPM goal editor, where the target reading speed can be set anywhere from 50 to 1000 words per minute.",
+    "ReadPace session history showing each session's date, word count, duration, WPM and recall ring — with untested sessions left blank rather than scored.",
   ),
   you: S(
     "you",
     "Settings",
-    "ReadPace “You” tab with plan status, remaining free comprehension tests, the comprehension-test toggle and light/dark theme selection.",
+    "ReadPace “You” tab with plan status, the 285 WPM goal, the comprehension-test toggle, theme selection and an opt-in for anonymous usage data.",
   ),
 } satisfies Record<string, Screen>;
 
@@ -201,13 +201,13 @@ export const gallery: Screen[] = [
   screens.sweetSpot,
   screens.stats,
   screens.book,
-  screens.trend,
+  screens.quiz,
+  screens.score,
+  screens.review,
   screens.category,
-  screens.productive,
   screens.library,
   screens.sessions,
   screens.timer,
-  screens.goal,
   screens.you,
 ];
 
@@ -233,7 +233,7 @@ export const steps = [
     n: "03",
     title: "See what stayed with you",
     body: "Take an optional quiz about those pages. See your recall alongside your speed, and get to know your reading rhythm.",
-    screen: screens.book,
+    screen: screens.score,
     detail: `${facts.quizMin}–${facts.quizMax} questions, scaled to how much you scanned.`,
   },
 ] as const;
