@@ -13,6 +13,7 @@ export function GET() {
     `## Reading sweet spot\n\nReadPace groups recorded sessions into ${facts.sweetSpotBinWidth}-WPM bands and highlights the highest average quiz recall after ${facts.sweetSpotMinTestedSessions} tested sessions. It describes the reader's data, not a validated cognitive assessment or a guaranteed improvement. Screenshots show one reader's results.`,
     `## Plans\n\nFree: ${pricing.free.items.join("; ")}.\nPremium: ${pricing.premium.items.join("; ")}. ${pricing.premium.note}.`,
     `## Privacy\n\nPage photos are processed on the phone and are not uploaded. Optional comprehension quizzes send recognised text to an AI service. Timing and word counting work offline; quizzes and sync need a connection. [Privacy details](${site.url}/privacy).`,
+    `## Legal\n\nPremium is an auto-renewing subscription sold as an in-app purchase; Apple or Google is the merchant of record, and cancellations and refunds go through the App Store or Google Play. [Terms of service](${site.url}/terms) · [Privacy](${site.url}/privacy).`,
     `## Frequently asked questions\n\n${faqs.map((faq) => `### ${faq.q}\n\n${faq.a}`).join("\n\n")}`,
     `## Support\n\n[Support](${site.url}/support)\nContact: ${site.email}`,
   ].join("\n\n");

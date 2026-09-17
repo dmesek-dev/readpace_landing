@@ -71,6 +71,7 @@ export function SiteFooter() {
           <a href="/#pricing">Plans & pricing</a>
           <a href="/support">Help & support</a>
           <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
         </nav>
       </div>
       <div className="footer-bottom">

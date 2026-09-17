@@ -33,6 +33,31 @@ export const site = {
   bundleId: "com.readpace",
 } as const;
 
+/* ------------------------------------------------------------------ legal */
+
+/**
+ * The operator behind the app, used by /terms and /privacy.
+ *
+ * ReadPace is run by an individual trader in the EU, so the terms are written
+ * for that shape: EU consumer law applies in full, Apple and Google are the
+ * merchants of record for subscriptions, and the reader's own country's
+ * consumer rules are never displaced by the governing-law clause.
+ *
+ * TODO before launch: confirm `operator` matches the name you trade under and
+ * fill in `address` — an identifiable trader address is required of anyone
+ * selling to EU consumers, and both stores ask for it on the listing.
+ */
+export const legal = {
+  /** Trading name shown as the contracting party. */
+  operator: "Dominik Mesek",
+  /** Registered/business address. Shown verbatim on /terms. */
+  address: "TODO: street, postcode, city, Croatia",
+  country: "Croatia",
+  governingLaw: "Croatian law",
+  /** Where the terms and the privacy notice were last substantively changed. */
+  updated: "2026-09-17",
+} as const;
+
 /* ------------------------------------------------------- store / CTA URLs */
 
 /**

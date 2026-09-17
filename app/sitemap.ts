@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { site } from "@/content/site";
+import { legal, site } from "@/content/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -7,9 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...["reading-speed-test", "wpm-calculator", "average-reading-speed"].map(
       (path) => ({ url: `${site.url}/${path}`, lastModified: "2026-09-14" }),
     ),
-    ...["privacy", "support"].map((path) => ({
-      url: `${site.url}/${path}`,
-      lastModified: "2026-09-07",
-    })),
+    { url: `${site.url}/privacy`, lastModified: legal.updated },
+    { url: `${site.url}/terms`, lastModified: legal.updated },
+    { url: `${site.url}/support`, lastModified: "2026-09-07" },
   ];
 }

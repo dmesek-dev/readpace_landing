@@ -1200,16 +1200,21 @@ details > summary::-webkit-details-marker {
 .footer-main nav {
   display: flex;
   flex-direction: column;
-  gap: 12px;
   font-size: 10px;
   color: var(--color-ink-soft);
+}
+/* The padding, not a gap, sets the rhythm here: at this type size a gap leaves
+   dead space between links that a thumb lands in and nothing happens. */
+.footer-main nav a {
+  display: block;
+  padding-block: 9px;
 }
 .footer-main nav > span {
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 1.2px;
   color: #404638;
-  margin-bottom: 9px;
+  margin-bottom: 12px;
 }
 .footer-main a:hover {
   color: var(--color-brand);
@@ -1516,6 +1521,80 @@ details > summary::-webkit-details-marker {
   background: #f3e8db;
   border-radius: 8px;
   margin-top: 20px;
+}
+/* Legal and support pages. Their own rules rather than utilities, because the
+   base `h1, h2, h3, p { margin: 0 }` above is unlayered and so outranks every
+   Tailwind margin and font-size utility. */
+.doc-shell {
+  max-width: 680px;
+  margin-inline: auto;
+  padding: 70px 20px 90px;
+}
+.doc-back {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+.doc-shell h1 {
+  margin-top: 26px;
+  font-size: clamp(34px, 4.4vw, 46px);
+  font-weight: 500;
+  letter-spacing: -1.6px;
+  line-height: 1.1;
+}
+.doc-updated {
+  margin-top: 14px;
+  font-size: 12px;
+  color: var(--color-taupe);
+}
+.doc-body {
+  margin-top: 55px;
+}
+.doc-body h2 {
+  font-size: 26px;
+  letter-spacing: -0.8px;
+  line-height: 1.25;
+  margin-top: 52px;
+}
+.doc-body p,
+.doc-body li {
+  font-size: 14px;
+  line-height: 1.95;
+  color: #5a6250;
+}
+.doc-body p {
+  margin-top: 18px;
+}
+.doc-body h2 + p {
+  margin-top: 20px;
+}
+.doc-list {
+  margin-top: 20px;
+  display: grid;
+  gap: 14px;
+}
+.doc-list li {
+  display: flex;
+  gap: 12px;
+}
+.doc-list li::before {
+  content: "";
+  flex: none;
+  width: 5px;
+  height: 5px;
+  margin-top: 11px;
+  border-radius: 50%;
+  background: var(--color-brand);
+}
+.doc-link {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: var(--color-brand);
+}
+.doc-link:hover {
+  color: var(--color-brand-deep);
 }
 @media (min-width: 1400px) {
   .hero-art {

@@ -8,6 +8,7 @@ const routes = [
   "/wpm-calculator",
   "/average-reading-speed",
   "/privacy",
+  "/terms",
   "/support",
 ];
 const pages = new Map(
