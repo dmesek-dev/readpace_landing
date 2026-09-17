@@ -1,12 +1,17 @@
 import { AppleIcon, PlayIcon } from "./Icons";
+import { StoreLink } from "./StoreLink";
 import { stores } from "@/content/site";
 
 type Variant = "default" | "onBrand";
+type Store = "app_store" | "google_play";
 
 /**
  * The primary CTA. Both buttons read their href from `stores` in
  * `content/site.ts` — when a URL is still `null` the badge renders as a
  * non-clickable "coming soon" chip rather than a dead `#` link.
+ *
+ * A real (non-null) badge sends a `store_click` analytics event when pressed;
+ * a "coming soon" chip has nothing to click and sends nothing.
  */
 export function StoreBadges({
   className = "",
@@ -21,6 +26,7 @@ export function StoreBadges({
     <div className={`flex flex-wrap gap-3 ${className}`}>
       <Badge
         href={stores.appStore}
+        store="app_store"
         icon={<AppleIcon className={size === "lg" ? "h-6 w-6" : "h-5 w-5"} />}
         kicker="Download on the"
         label="App Store"
@@ -30,6 +36,7 @@ export function StoreBadges({
       />
       <Badge
         href={stores.googlePlay}
+        store="google_play"
         icon={<PlayIcon className={size === "lg" ? "h-6 w-6" : "h-5 w-5"} />}
         kicker="Get it on"
         label="Google Play"
@@ -42,6 +49,7 @@ export function StoreBadges({
 
 function Badge({
   href,
+  store,
   icon,
   kicker,
   label,
@@ -50,6 +58,7 @@ function Badge({
   primary = false,
 }: {
   href: string | null;
+  store: Store;
   icon: React.ReactNode;
   kicker: string;
   label: string;
@@ -103,12 +112,13 @@ function Badge({
   }
 
   return (
-    <a
+    <StoreLink
       href={href}
-      aria-label={`${kicker} ${label}`}
+      store={store}
+      ariaLabel={`${kicker} ${label}`}
       className={`flex items-center gap-3 rounded-full ${pad} ${skin} transition-transform duration-200 hover:-translate-y-0.5`}
     >
       {inner}
-    </a>
+    </StoreLink>
   );
 }

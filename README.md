@@ -30,6 +30,12 @@ Both store URLs are currently `null`. The website labels those platforms as comi
 
 The canonical production origin is `https://readpace.org`. Confirm it before launch. The existing contact address is `hello@readpace.org`. Privacy/support copy is retained from the original site, with its original September 7, 2026 content date.
 
+## Analytics
+
+Page views and App Store / Google Play button clicks are measured with Firebase Analytics (GA4). It is off unless the `NEXT_PUBLIC_FIREBASE_*` variables from `.env.example` are set, so local development and previews collect nothing and the SDK is not downloaded. Consent Mode v2 starts denied, so no analytics or advertising cookie is written and no banner is needed; page and event counts still arrive.
+
+Store clicks cannot be recorded while `stores` in `content/site.ts` is `null` — the badges are not links yet. See [analytics setup](docs/analytics.md) for the Firebase console steps, the GA4 custom dimensions that make the `store` parameter visible, and how to move to full consent-based measurement later.
+
 ## Search and AI discovery
 
 - Search-focused resource titles, descriptions, self-canonicals and social metadata.

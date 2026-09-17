@@ -23,13 +23,15 @@ The original landing page had metadata and crawler endpoints but a long conversi
 6. Check mobile performance on the live host using [PageSpeed Insights](https://pagespeed.web.dev/). Local build success is not a measured Core Web Vitals score.
 7. Confirm the Search Console setting that permits generative AI search features. Monitor indexing and impressions before making ranking claims.
 
-These account/hosting actions have not been performed from this workspace. No analytics provider, waitlist or Search Console ownership token was invented.
+These account/hosting actions have not been performed from this workspace. No waitlist or Search Console ownership token was invented.
+
+8. Create the Firebase project, set the `NEXT_PUBLIC_FIREBASE_*` environment variables in production and register the `store` custom dimension in GA4. See [analytics setup](analytics.md). The code is in place; the console and hosting steps are not.
 
 ## What to measure
 
 In Search Console, review impressions, clicks, click-through rate, indexed pages and query-to-page matches for reading speed and WPM topics. Use separate filters for brand, reading-test and calculator searches. Do not assume an immediate ranking change after publishing.
 
-If conversion analytics are added later, useful events are test started, test finished, result viewed and store link clicked. Keep raw quiz answers and scanned book text out of marketing analytics. Decide on the provider and privacy requirements before implementing collection.
+Firebase Analytics records page views and a `store_click` event per storefront. Test started, test finished and result viewed remain useful additions; `track()` in `lib/analytics.ts` takes them. Keep raw quiz answers and scanned book text out of marketing analytics.
 
 Improve the site over time with original, useful material: accurately documented app workflows, clearly described reader case studies with permission, authentic store reviews and relevant links earned through communities or editorial coverage. Avoid fake reviews, mass-generated query pages and purchased mentions.
 

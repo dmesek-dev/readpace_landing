@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 
+import { Analytics } from "@/components/Analytics";
 import { site } from "@/content/site";
 import "./globals.css";
 
@@ -86,6 +87,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {children}
+        <Analytics />
       </body>
     </html>
   );
