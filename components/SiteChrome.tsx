@@ -68,6 +68,7 @@ export function SiteFooter() {
         <nav aria-label="Product and support">
           <span>READPACE</span>
           <a href="/#how">How it works</a>
+          <a href="/#comprehension">Comprehension tests</a>
           <a href="/#pricing">Plans & pricing</a>
           <a href="/support">Help & support</a>
           <a href="/privacy">Privacy</a>

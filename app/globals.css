@@ -662,6 +662,145 @@ em {
   font-size: 7px;
   color: #697160;
 }
+.quiz-section {
+  position: relative;
+  overflow: hidden;
+  background: #f4ebdf;
+  border-block: 1px solid #e7dccb;
+  padding-block: 88px;
+}
+.quiz-star {
+  position: absolute;
+  top: 40px;
+  right: 6%;
+  font-size: 58px;
+  line-height: 1;
+  color: #e3c7a7;
+}
+.quiz-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 54px;
+  align-items: center;
+}
+.quiz-copy .eyebrow {
+  display: flex;
+  align-items: center;
+  color: var(--color-brand);
+  margin-bottom: 20px;
+  font-size: 9px;
+}
+.quiz-copy .status-dot {
+  background: #b84922;
+  box-shadow: 0 0 0 4px #f0dcc7;
+}
+.quiz-copy h2 {
+  font-size: clamp(38px, 4.4vw, 54px);
+}
+.quiz-copy h2 em {
+  color: var(--color-brand);
+}
+.quiz-copy > p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #6b6455;
+  margin-top: 22px;
+  max-width: 420px;
+}
+.quiz-copy .check-list {
+  color: #4b4638;
+}
+.quiz-copy .check-list svg {
+  color: #b06b40;
+}
+.quiz-copy .text-link {
+  color: var(--color-brand);
+  font-size: 11px;
+}
+.quiz-demo {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-block: 18px 46px;
+}
+.quiz-phone-front {
+  width: 236px;
+  transform: rotate(-3deg);
+  z-index: 2;
+}
+.quiz-phone-back {
+  position: absolute;
+  width: 206px;
+  right: 6px;
+  top: 52px;
+  transform: rotate(7deg);
+  opacity: 0.97;
+}
+.quiz-caption {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  white-space: nowrap;
+  background: #f0dbbfe8;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 7px;
+  letter-spacing: 1.3px;
+  color: #72563c;
+}
+.quiz-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 60px;
+}
+.quiz-cards > div {
+  background: #fffdf8;
+  border: 1px solid #ebe0cf;
+  border-radius: 13px;
+  padding: 27px 28px 30px;
+}
+.quiz-card-icon {
+  display: grid;
+  place-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #f6e5d5;
+  color: #a85b30;
+}
+.quiz-card-icon svg {
+  width: 17px;
+  height: 17px;
+}
+.quiz-cards h3 {
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 16px;
+}
+.quiz-cards p {
+  font-size: 10px;
+  line-height: 1.9;
+  color: #676153;
+  margin-top: 9px;
+}
+.quiz-note {
+  margin-top: 26px;
+  font-size: 9px;
+  line-height: 1.9;
+  color: #7c7463;
+}
+.quiz-note a {
+  color: var(--color-brand);
+  font-weight: 700;
+}
+.quiz-note a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
 .sweet-section {
   background: #2c352a;
   color: #f9f9ee;
@@ -1640,6 +1779,16 @@ details > summary::-webkit-details-marker {
     right: 20px;
     font-size: 40px;
   }
+  .quiz-grid {
+    gap: 48px;
+  }
+  .quiz-phone-front {
+    width: 214px;
+  }
+  .quiz-phone-back {
+    width: 188px;
+    right: 14px;
+  }
   .sweet-grid {
     gap: 45px;
   }
@@ -1793,6 +1942,41 @@ details > summary::-webkit-details-marker {
   }
   .recall-preview strong {
     font-size: 18px;
+  }
+  .quiz-section {
+    padding-block: 64px;
+  }
+  .quiz-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+  .quiz-copy > p {
+    max-width: none;
+  }
+  .quiz-demo {
+    padding-block: 6px 42px;
+  }
+  .quiz-phone-front {
+    width: 208px;
+  }
+  .quiz-phone-back {
+    position: relative;
+    width: 182px;
+    right: auto;
+    top: 26px;
+    margin-left: -36px;
+  }
+  .quiz-cards {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin-top: 42px;
+  }
+  .quiz-cards > div {
+    padding: 23px 24px 25px;
+  }
+  .quiz-star {
+    top: 24px;
+    font-size: 44px;
   }
   .sweet-grid {
     gap: 25px;
@@ -2028,6 +2212,24 @@ details > summary::-webkit-details-marker {
   }
   .recall-preview strong {
     font-size: 23px;
+  }
+  .quiz-section {
+    padding-block: 54px;
+  }
+  .quiz-copy h2 {
+    font-size: 40px;
+  }
+  .quiz-phone-front {
+    width: 178px;
+  }
+  .quiz-phone-back {
+    width: 156px;
+    top: 22px;
+    margin-left: -28px;
+  }
+  .quiz-caption {
+    font-size: 6px;
+    padding: 7px 12px;
   }
   .sweet-section {
     padding-block: 56px;

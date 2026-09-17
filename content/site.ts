@@ -263,6 +263,39 @@ export const steps = [
   },
 ] as const;
 
+/* ---------------------------------------------------- comprehension tests */
+
+/**
+ * The comprehension quiz is the feature everything else hangs off — without a
+ * recall score there is no sweet spot, only a speedometer. Numbers here come
+ * from `facts`, which mirrors `features/comprehension/domain/quiz_length.dart`.
+ */
+export const comprehension = {
+  eyebrow: "THE PART MOST READING APPS SKIP",
+  points: [
+    `${facts.questionsPerPage} questions per scanned page, between ${facts.quizMin} and ${facts.quizMax} a session`,
+    "Multiple choice, with a “No idea” option so guessing doesn't flatter your score",
+    "Your score becomes that session's recall — the other half of your WPM",
+  ],
+  cards: [
+    {
+      icon: "brain",
+      title: "Written from your pages",
+      body: "Questions come from the text on the pages you actually scanned — not a generic passage, and nothing from chapters you haven't reached.",
+    },
+    {
+      icon: "target",
+      title: "Scored as recall",
+      body: "Every tested session gets a recall percentage, stored next to the speed you read it at. That pairing is what reveals your sweet spot.",
+    },
+    {
+      icon: "check",
+      title: "Review every answer",
+      body: "Straight after the quiz you see all the questions, the answers you picked and the ones you missed — so the test teaches, not just grades.",
+    },
+  ],
+} as const;
+
 /* --------------------------------------------------------------- features */
 
 export const features = [
@@ -394,6 +427,7 @@ export const faqs: { q: string; a: string }[] = [
 
 export const nav = [
   { href: "#how", label: "How it works" },
+  { href: "#comprehension", label: "Comprehension" },
   { href: "#sweet-spot", label: "Sweet spot" },
   { href: "#features", label: "Features" },
   { href: "#pricing", label: "Pricing" },

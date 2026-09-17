@@ -14,6 +14,7 @@ import {
   iconMap,
 } from "@/components/Icons";
 import {
+  comprehension,
   facts,
   faqs,
   features,
@@ -89,10 +90,10 @@ export default function Page() {
               <div>
                 <span>YOUR READING SWEET SPOT</span>
                 <strong>
-                  300–325 <small>WPM</small>
+                  250–275 <small>WPM</small>
                 </strong>
                 <p>
-                  <span className="tiny-dot" /> 100% recall in this reader’s
+                  <span className="tiny-dot" /> 93% recall in this reader’s
                   sessions
                 </p>
               </div>
@@ -184,6 +185,65 @@ export default function Page() {
               );
             })}
           </ol>
+        </section>
+        <section id="comprehension" className="quiz-section">
+          <span className="quiz-star" aria-hidden="true">
+            ✳
+          </span>
+          <div className="shell quiz-grid">
+            <div className="quiz-copy">
+              <p className="eyebrow">
+                <span className="status-dot" /> {comprehension.eyebrow}
+              </p>
+              <h2 id="comprehension-heading">
+                Then it asks what
+                <br />
+                you <em>actually remember.</em>
+              </h2>
+              <p>
+                Speed on its own is just a number. After a session, ReadPace
+                writes a short quiz from the very pages you scanned — so the
+                score you get is about this book, this chapter, today.
+              </p>
+              <ul className="check-list">
+                {comprehension.points.map((point) => (
+                  <li key={point}>
+                    <CheckIcon aria-hidden="true" /> {point}
+                  </li>
+                ))}
+              </ul>
+              <a className="text-link" href="/reading-speed-test">
+                Try a comprehension test now <ArrowIcon aria-hidden="true" />
+              </a>
+            </div>
+            <div className="quiz-demo">
+              <PhoneFrame screen={screens.score} className="quiz-phone-back" />
+              <PhoneFrame screen={screens.quiz} className="quiz-phone-front" />
+              <span className="quiz-caption">
+                QUESTIONS FROM THE PAGES YOU JUST READ.
+              </span>
+            </div>
+          </div>
+          <div className="shell quiz-cards">
+            {comprehension.cards.map((card) => {
+              const Icon = iconMap[card.icon];
+              return (
+                <div key={card.title}>
+                  <span className="quiz-card-icon">
+                    <Icon aria-hidden="true" />
+                  </span>
+                  <h3>{card.title}</h3>
+                  <p>{card.body}</p>
+                </div>
+              );
+            })}
+          </div>
+          <p className="quiz-note shell">
+            Comprehension tests are optional. When you use one, the text
+            recognised from your scan is sent to an AI service to write the
+            questions — page photos never leave your phone.{" "}
+            <a href="/privacy">How privacy works</a>
+          </p>
         </section>
         <section id="sweet-spot" className="sweet-section">
           <div className="shell sweet-grid">

@@ -105,7 +105,7 @@ export default function OpengraphImage() {
               letterSpacing: -2,
             }}
           >
-            300–325 WPM
+            250–275 WPM
           </div>
           <div
             style={{
