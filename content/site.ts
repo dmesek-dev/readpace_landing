@@ -43,19 +43,19 @@ export const site = {
  * merchants of record for subscriptions, and the reader's own country's
  * consumer rules are never displaced by the governing-law clause.
  *
- * TODO before launch: confirm `operator` matches the name you trade under and
- * fill in `address` — an identifiable trader address is required of anyone
- * selling to EU consumers, and both stores ask for it on the listing.
+ * TODO before launch: confirm `operator` matches the name you trade under.
+ * The trader address below is required of anyone selling to EU consumers, and
+ * both stores ask for the same address on the listing — keep them identical.
  */
 export const legal = {
   /** Trading name shown as the contracting party. */
   operator: "Dominik Mesek",
   /** Registered/business address. Shown verbatim on /terms. */
-  address: "TODO: street, postcode, city, Croatia",
+  address: "Prislinova ulica 1, 10090 Zagreb, Croatia",
   country: "Croatia",
   governingLaw: "Croatian law",
   /** Where the terms and the privacy notice were last substantively changed. */
-  updated: "2026-09-17",
+  updated: "2026-09-23",
 } as const;
 
 /* ------------------------------------------------------- store / CTA URLs */
