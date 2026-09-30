@@ -66,7 +66,7 @@ export const legal = {
  * object. `null` renders the badge as a non-clickable "coming soon" chip.
  */
 export const stores = {
-  appStore: null as string | null, // e.g. "https://apps.apple.com/app/readpace/id0000000000"
+  appStore: "https://apps.apple.com/app/id6755963329" as string | null,
   googlePlay: null as string | null, // e.g. "https://play.google.com/store/apps/details?id=com.readpace"
 } as const;
 
