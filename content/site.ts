@@ -67,7 +67,7 @@ export const legal = {
  */
 export const stores = {
   appStore: "https://apps.apple.com/app/id6755963329" as string | null,
-  googlePlay: null as string | null, // e.g. "https://play.google.com/store/apps/details?id=com.readpace"
+  googlePlay: "https://play.google.com/store/apps/details?id=com.readpace" as string | null,
 } as const;
 
 export const hasStoreLinks = Boolean(stores.appStore ?? stores.googlePlay);
